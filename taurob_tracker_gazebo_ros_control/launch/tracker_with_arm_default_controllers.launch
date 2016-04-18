@@ -3,12 +3,12 @@
 <launch>
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
-  <rosparam file="$(find argo_robot_gazebo_ros_control)/config/argonaut_experimental.yaml" command="load"/>
+  <rosparam file="$(find taurob_tracker_gazebo_ros_control)/config/tracker_with_arm_default.yaml" command="load"/>
 
   <!-- load the controllers -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="argonaut_robot"
-    args="joint_state_controller arm_traj_controller flipper_traj_controller front_spinning_lidar_spin_joint_velocity_controller rear_spinning_lidar_spin_joint_velocity_controller"/>
+    output="screen" ns="tracker_controllers"
+    args="joint_state_controller arm_traj_controller"/>
 
 
   <!-- convert joint states to TF transforms for rviz, etc -->
