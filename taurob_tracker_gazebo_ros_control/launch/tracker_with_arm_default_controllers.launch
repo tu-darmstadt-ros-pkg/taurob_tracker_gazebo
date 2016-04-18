@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find argo_robot_gazebo_ros_control)/config/argonaut_experimental.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="argonaut_robot"
+    args="joint_state_controller arm_traj_controller flipper_traj_controller front_spinning_lidar_spin_joint_velocity_controller rear_spinning_lidar_spin_joint_velocity_controller"/>
+
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+<!--  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/rrbot/joint_states" />
+  </node>-->
+
+</launch>
