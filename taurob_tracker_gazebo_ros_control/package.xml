@@ -40,10 +40,10 @@
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>gazebo_ros_control/</build_depend>
+  <build_depend>gazebo_ros_control</build_depend>
   <build_depend>joint_state_controller</build_depend>
   <build_depend>joint_trajectory_controller</build_depend>
-  <run_depend>gazebo_ros_control/</run_depend>
+  <run_depend>gazebo_ros_control</run_depend>
   <run_depend>joint_state_controller</run_depend>
   <run_depend>joint_trajectory_controller</run_depend>
 

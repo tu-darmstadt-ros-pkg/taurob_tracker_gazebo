@@ -5,7 +5,7 @@ project(taurob_tracker_gazebo_ros_control)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  gazebo_ros_control/
+  gazebo_ros_control
   joint_state_controller
   joint_trajectory_controller
 )
