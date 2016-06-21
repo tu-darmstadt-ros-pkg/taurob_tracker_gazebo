@@ -42,7 +42,7 @@
 // that the plugin macro is commented out.
 
 
-#include <gazebo_ros_control/default_robot_hw_sim.h>
+#include <taurob_tracker_hw_interface/robot_hw_sim_base.h>
 
 
 namespace
@@ -59,7 +59,7 @@ namespace gazebo_ros_control
 {
 
 
-bool DefaultRobotHWSim::initSim(
+bool RobotHwSimBase::initSim(
   const std::string& robot_namespace,
   ros::NodeHandle model_nh,
   gazebo::physics::ModelPtr parent_model,
@@ -244,7 +244,7 @@ bool DefaultRobotHWSim::initSim(
   return true;
 }
 
-void DefaultRobotHWSim::readSim(ros::Time time, ros::Duration period)
+void RobotHwSimBase::readSim(ros::Time time, ros::Duration period)
 {
   for(unsigned int j=0; j < n_dof_; j++)
   {
@@ -263,7 +263,7 @@ void DefaultRobotHWSim::readSim(ros::Time time, ros::Duration period)
   }
 }
 
-void DefaultRobotHWSim::writeSim(ros::Time time, ros::Duration period)
+void RobotHwSimBase::writeSim(ros::Time time, ros::Duration period)
 {
   // If the E-stop is active, joints controlled by position commands will maintain their positions.
   if (e_stop_active_)
@@ -356,7 +356,7 @@ void DefaultRobotHWSim::writeSim(ros::Time time, ros::Duration period)
   }
 }
 
-void DefaultRobotHWSim::eStopActive(const bool active)
+void RobotHwSimBase::eStopActive(const bool active)
 {
   e_stop_active_ = active;
 }
@@ -364,7 +364,7 @@ void DefaultRobotHWSim::eStopActive(const bool active)
 // Register the limits of the joint specified by joint_name and joint_handle. The limits are
 // retrieved from joint_limit_nh. If urdf_model is not NULL, limits are retrieved from it also.
 // Return the joint's type, lower position limit, upper position limit, and effort limit.
-void DefaultRobotHWSim::registerJointLimits(const std::string& joint_name,
+void RobotHwSimBase::registerJointLimits(const std::string& joint_name,
                          const hardware_interface::JointHandle& joint_handle,
                          const ControlMethod ctrl_method,
                          const ros::NodeHandle& joint_limit_nh,
@@ -485,4 +485,4 @@ void DefaultRobotHWSim::registerJointLimits(const std::string& joint_name,
 
 }
 
-//PLUGINLIB_EXPORT_CLASS(gazebo_ros_control::DefaultRobotHWSim, gazebo_ros_control::RobotHWSim)
+//PLUGINLIB_EXPORT_CLASS(gazebo_ros_control::RobotHwSimBase, gazebo_ros_control::RobotHWSim)

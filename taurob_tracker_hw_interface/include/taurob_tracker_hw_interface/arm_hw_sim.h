@@ -41,40 +41,17 @@
 // This is a copy of default_robot_hw_sim with the only difference being
 // that the plugin macro is commented out.
 
-#ifndef _GAZEBO_ROS_CONTROL___ROBOT_HW_SIM__BASE_H_
-#define _GAZEBO_ROS_CONTROL___ROBOT_HW_SIM__BASE_H_
+#ifndef _GAZEBO_ROS_CONTROL___TAUROB_ARM_HW_SIM__H_
+#define _GAZEBO_ROS_CONTROL___TAUROB_ARM_HW_SIM__H_
 
-// ros_control
-#include <control_toolbox/pid.h>
-#include <hardware_interface/joint_command_interface.h>
-#include <hardware_interface/robot_hw.h>
-#include <joint_limits_interface/joint_limits.h>
-#include <joint_limits_interface/joint_limits_interface.h>
-#include <joint_limits_interface/joint_limits_rosparam.h>
-#include <joint_limits_interface/joint_limits_urdf.h>
-
-// Gazebo
-// #include <gazebo/common/common.hh>
-// #include <gazebo/physics/physics.hh>
-// #include <gazebo/gazebo.hh>
-
-// ROS
-#include <ros/ros.h>
-#include <angles/angles.h>
-#include <pluginlib/class_list_macros.h>
-
-// gazebo_ros_control
-#include <gazebo_ros_control/robot_hw_sim.h>
-
-// URDF
-#include <urdf/model.h>
+#include <taurob_tracker_hw_interface/robot_hw_sim_base.h>
 
 
 
 namespace gazebo_ros_control
 {
 
-class RobotHwSimBase : public gazebo_ros_control::RobotHWSim
+class ArmHwSim : public gazebo_ros_control::RobotHwSimBase
 {
 public:
 
@@ -92,6 +69,7 @@ public:
   virtual void eStopActive(const bool active);
 
 protected:
+  /*
   // Methods used to control a joint.
   enum ControlMethod {EFFORT, POSITION, POSITION_PID, VELOCITY, VELOCITY_PID};
 
@@ -139,6 +117,7 @@ protected:
 
   // e_stop_active_ is true if the emergency stop is active.
   bool e_stop_active_, last_e_stop_active_;
+  */
 };
 
 typedef boost::shared_ptr<RobotHwSimBase> RobotHwSimBasePtr;

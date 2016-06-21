@@ -42,19 +42,20 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>controller_interface</build_depend>
   <build_depend>controller_manager</build_depend>
+  <build_depend>gazebo</build_depend>
   <build_depend>gazebo_ros_control</build_depend>
-  <build_depend>pluglinlib</build_depend>
+  <!--<build_depend>pluglinlib</build_depend>-->
   <build_depend>roscpp</build_depend>
   <run_depend>controller_interface</run_depend>
   <run_depend>controller_manager</run_depend>
   <run_depend>gazebo_ros_control</run_depend>
-  <run_depend>pluglinlib</run_depend>
+  <run_depend>gazebo</run_depend>
+  <!--<run_depend>pluglinlib</run_depend>-->
   <run_depend>roscpp</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
-    <!-- Other tools can request additional information be placed here -->
-
+    <gazebo_ros_control plugin="${prefix}/taurob_tracker_hw_interface_plugins.xml"/>
   </export>
 </package>
