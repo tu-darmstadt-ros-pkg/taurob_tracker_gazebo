@@ -1,8 +1,8 @@
 <library path="lib/libtaurob_tracker_hw_interface">
 
   <class
-    name="gazebo_ros_control/ArmHwSim"
-    type="gazebo_ros_control::ArmHwSim"
+    name="tracker_gazebo_ros_control/ArmHwSim"
+    type="tracker_gazebo_ros_control::ArmHwSim"
     base_class_type="gazebo_ros_control::RobotHWSim">
     <description>
       A default robot simulation interface which constructs joint handles from an SDF/URDF.

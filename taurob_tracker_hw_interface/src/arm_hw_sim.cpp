@@ -3,6 +3,7 @@
  *
  *  Copyright (c) 2013, Open Source Robotics Foundation
  *  Copyright (c) 2013, The Johns Hopkins University
+ *  Copyright (c) 2016, Stefan Kohlbrecher, TU Darmstadt
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -34,10 +35,6 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************/
 
-/* Author: Dave Coleman, Jonathan Bohren
-   Desc:   Hardware Interface for any simulated robot in Gazebo
-*/
-
 // This is a copy of default_robot_hw_sim with the only difference being
 // that the plugin macro is commented out.
 
@@ -45,7 +42,7 @@
 #include <taurob_tracker_hw_interface/arm_hw_sim.h>
 
 
-namespace gazebo_ros_control
+namespace tracker_gazebo_ros_control
 {
 
 
@@ -56,13 +53,27 @@ bool ArmHwSim::initSim(
   const urdf::Model *const urdf_model,
   std::vector<transmission_interface::TransmissionInfo> transmissions)
 {
-  RobotHwSimBase::initSim(robot_namespace,
+  std::vector<transmission_interface::TransmissionInfo> filtered_transmissions;
+  
+  for (size_t i = 0; i < transmissions.size(); ++i){
+
+    //const std::string& name = transmissions[i].name_;
+    const std::string& name = transmissions[i].joints_[0].name_;
+
+
+    if (name == "arm_joint_0" || name == "arm_joint_1" || name == "arm_joint_2" || name == "arm_joint_3"){
+      filtered_transmissions.push_back(transmissions[i]);
+    }
+    
+  }
+  
+  return RobotHwSimBase::initSim(robot_namespace,
                           model_nh,
                           parent_model,
                           urdf_model,
-                          transmissions);
+                          filtered_transmissions);
 }
 
 }
 
-PLUGINLIB_EXPORT_CLASS(gazebo_ros_control::ArmHwSim, gazebo_ros_control::RobotHWSim)
+PLUGINLIB_EXPORT_CLASS(tracker_gazebo_ros_control::ArmHwSim, gazebo_ros_control::RobotHWSim)

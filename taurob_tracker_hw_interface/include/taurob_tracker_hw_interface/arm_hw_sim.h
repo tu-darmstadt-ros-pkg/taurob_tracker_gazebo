@@ -3,6 +3,7 @@
  *
  *  Copyright (c) 2013, Open Source Robotics Foundation
  *  Copyright (c) 2013, The Johns Hopkins University
+ *  Copyright (c) 2016, Stefan Kohlbrecher, TU Darmstadt
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -34,9 +35,8 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *********************************************************************/
 
-/* Author: Dave Coleman, Jonathan Bohren
-   Desc:   Hardware Interface for any simulated robot in Gazebo
-*/
+// This is a copy of default_robot_hw_sim with the only difference being
+// that the plugin macro is commented out.
 
 // This is a copy of default_robot_hw_sim with the only difference being
 // that the plugin macro is commented out.
@@ -48,7 +48,7 @@
 
 
 
-namespace gazebo_ros_control
+namespace tracker_gazebo_ros_control
 {
 
 class ArmHwSim : public gazebo_ros_control::RobotHwSimBase
@@ -61,66 +61,7 @@ public:
     gazebo::physics::ModelPtr parent_model,
     const urdf::Model *const urdf_model,
     std::vector<transmission_interface::TransmissionInfo> transmissions);
-
-  virtual void readSim(ros::Time time, ros::Duration period);
-
-  virtual void writeSim(ros::Time time, ros::Duration period);
-
-  virtual void eStopActive(const bool active);
-
-protected:
-  /*
-  // Methods used to control a joint.
-  enum ControlMethod {EFFORT, POSITION, POSITION_PID, VELOCITY, VELOCITY_PID};
-
-  // Register the limits of the joint specified by joint_name and joint_handle. The limits are
-  // retrieved from joint_limit_nh. If urdf_model is not NULL, limits are retrieved from it also.
-  // Return the joint's type, lower position limit, upper position limit, and effort limit.
-  void registerJointLimits(const std::string& joint_name,
-                           const hardware_interface::JointHandle& joint_handle,
-                           const ControlMethod ctrl_method,
-                           const ros::NodeHandle& joint_limit_nh,
-                           const urdf::Model *const urdf_model,
-                           int *const joint_type, double *const lower_limit,
-                           double *const upper_limit, double *const effort_limit);
-
-  unsigned int n_dof_;
-
-  hardware_interface::JointStateInterface    js_interface_;
-  hardware_interface::EffortJointInterface   ej_interface_;
-  hardware_interface::PositionJointInterface pj_interface_;
-  hardware_interface::VelocityJointInterface vj_interface_;
-
-  joint_limits_interface::EffortJointSaturationInterface   ej_sat_interface_;
-  joint_limits_interface::EffortJointSoftLimitsInterface   ej_limits_interface_;
-  joint_limits_interface::PositionJointSaturationInterface pj_sat_interface_;
-  joint_limits_interface::PositionJointSoftLimitsInterface pj_limits_interface_;
-  joint_limits_interface::VelocityJointSaturationInterface vj_sat_interface_;
-  joint_limits_interface::VelocityJointSoftLimitsInterface vj_limits_interface_;
-
-  std::vector<std::string> joint_names_;
-  std::vector<int> joint_types_;
-  std::vector<double> joint_lower_limits_;
-  std::vector<double> joint_upper_limits_;
-  std::vector<double> joint_effort_limits_;
-  std::vector<ControlMethod> joint_control_methods_;
-  std::vector<control_toolbox::Pid> pid_controllers_;
-  std::vector<double> joint_position_;
-  std::vector<double> joint_velocity_;
-  std::vector<double> joint_effort_;
-  std::vector<double> joint_effort_command_;
-  std::vector<double> joint_position_command_;
-  std::vector<double> last_joint_position_command_;
-  std::vector<double> joint_velocity_command_;
-
-  std::vector<gazebo::physics::JointPtr> sim_joints_;
-
-  // e_stop_active_ is true if the emergency stop is active.
-  bool e_stop_active_, last_e_stop_active_;
-  */
 };
-
-typedef boost::shared_ptr<RobotHwSimBase> RobotHwSimBasePtr;
 
 }
 
